@@ -51,6 +51,7 @@
             overflow-x: hidden;
         }
         
+        /* Unified Responsive Design - Works on all devices */
         .app-header {
             text-align: center;
             margin-bottom: 40px;
@@ -69,7 +70,7 @@
         }
         
         .app-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-secondary);
             font-weight: 400;
             opacity: 0.8;
@@ -84,6 +85,9 @@
             transition: all 0.3s var(--animation-smooth);
             position: relative;
             overflow: hidden;
+            margin: 0 auto 20px auto;
+            width: 100%;
+            max-width: 800px;
         }
         
         .glass-card::before {
@@ -107,23 +111,17 @@
             display: flex;
             gap: 15px;
             align-items: center;
-            margin: 0 auto 20px auto;
-            width: 100%;
-            max-width: 800px;
-            animation: fadeInUp 0.8s var(--animation-smooth);
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .controls {
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: row;
         }
         
         .io-areas {
             flex-direction: column;
             align-items: stretch;
-            width: 100%;
-            max-width: 800px;
-
         }
         
         .input-group {
@@ -148,7 +146,7 @@
             padding: 16px 20px;
             border: 2px solid var(--border-color);
             border-radius: 12px;
-            font-size: 14px;
+            font-size: 16px;
             font-family: inherit;
             background: rgba(255, 255, 255, 0.03);
             color: var(--text-primary);
@@ -156,6 +154,7 @@
             resize: vertical;
             min-height: 60px;
             backdrop-filter: blur(10px);
+            box-sizing: border-box;
         }
         
         textarea:focus {
@@ -212,6 +211,8 @@
             font-family: inherit;
             position: relative;
             overflow: hidden;
+            min-height: 44px;
+            justify-content: center;
         }
         
         .btn::before {
@@ -417,6 +418,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .metric {
@@ -437,7 +439,7 @@
             background: rgba(255, 255, 255, 0.03);
             color: var(--text-primary);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s var(--animation-smooth);
         }
         
@@ -447,29 +449,10 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
-        /* Responsive Design */
+        /* Simple responsive breakpoints */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
-            }
-            
-            .app-header {
-                margin-bottom: 30px;
-            }
-            
-            .app-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-            
-            .app-subtitle {
-                font-size: 1rem;
-            }
-            
-            .controls, .io-areas, .speech-controls {
-                width: 100%;
-                max-width: 100%;
-                padding: 20px;
-                gap: 12px;
             }
             
             .controls {
@@ -479,81 +462,12 @@
             
             .btn {
                 width: 100%;
-                justify-content: center;
-                padding: 16px 24px;
-                font-size: 16px;
+                max-width: 300px;
             }
             
             .performance-metrics {
                 flex-direction: column;
                 gap: 10px;
-            }
-            
-            .io-areas {
-                padding: 20px;
-            }
-            
-            .video-container {
-                width: 100%;
-                max-width: 100%;
-                margin-bottom: 25px;
-            }
-            
-            #videoFeed {
-                max-width: 100%;
-                border-radius: 15px;
-            }
-            
-            .caption-area {
-                width: 100%;
-                max-width: 100%;
-                padding: 20px;
-                margin-bottom: 15px;
-            }
-            
-            .status-indicator {
-                width: 100%;
-                max-width: 100%;
-                padding: 12px 16px;
-                margin-bottom: 15px;
-            }
-            
-            .performance-info {
-                width: 100%;
-                max-width: 100%;
-                padding: 12px 16px;
-                margin-bottom: 15px;
-            }
-            
-            .loading {
-                width: 100%;
-                max-width: 100%;
-                padding: 30px 20px;
-            }
-            
-            textarea {
-                font-size: 16px; /* Prevents zoom on iOS */
-                padding: 14px 16px;
-                min-height: 80px;
-            }
-            
-            .input-group {
-                margin-bottom: 15px;
-            }
-            
-            label {
-                font-size: 0.9rem;
-                margin-bottom: 6px;
-            }
-            
-            .caption-text {
-                font-size: 15px;
-                line-height: 1.5;
-            }
-            
-            .caption-label {
-                font-size: 1rem;
-                margin-bottom: 10px;
             }
         }
         
@@ -562,83 +476,12 @@
                 padding: 10px;
             }
             
-            .app-header {
-                margin-bottom: 25px;
+            .glass-card {
+                margin-bottom: 15px;
             }
             
-            .app-title {
-                font-size: clamp(1.5rem, 6vw, 2rem);
-            }
-            
-            .app-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .controls, .io-areas, .speech-controls {
-                padding: 15px;
-                gap: 10px;
-            }
-            
-            .btn {
-                padding: 14px 20px;
-                font-size: 15px;
-            }
-            
-            .video-container {
-                margin-bottom: 20px;
-            }
-            
-            .caption-area {
-                padding: 15px;
-                margin-bottom: 12px;
-            }
-            
-            .status-indicator {
-                padding: 10px 14px;
-                margin-bottom: 12px;
-                font-size: 13px;
-            }
-            
-            .performance-info {
-                padding: 10px 14px;
-                margin-bottom: 12px;
-                font-size: 12px;
-            }
-            
-            .loading {
-                padding: 25px 15px;
-            }
-            
-            textarea {
-                padding: 12px 14px;
-                min-height: 70px;
-                font-size: 16px;
-            }
-            
-            .input-group {
-                margin-bottom: 12px;
-            }
-            
-            label {
-                font-size: 0.85rem;
-                margin-bottom: 5px;
-            }
-            
-            .caption-text {
-                font-size: 14px;
-            }
-            
-            .caption-label {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
-            }
-            
-            .performance-metrics {
-                gap: 8px;
-            }
-            
-            .metric {
-                font-size: 12px;
+            .controls, .io-areas {
+                padding: 20px;
             }
         }
         
@@ -711,55 +554,12 @@
                 transition-duration: 0.01ms !important;
             }
         }
-        
-        /* Mobile-specific improvements */
-        @media (max-width: 768px) {
-            /* Prevent text selection on buttons for better mobile UX */
-            .btn {
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                -webkit-tap-highlight-color: transparent;
-            }
-            
-            /* Improve touch targets */
-            .btn {
-                min-height: 44px; /* iOS recommended minimum touch target */
-                
-            }
-            
-            /* Better scrolling on mobile */
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            /* Prevent zoom on input focus */
-            input, textarea, select {
-                font-size: 16px;
-            }
-        }
-        
-        /* iOS Safari specific fixes */
-        @supports (-webkit-touch-callout: none) {
-            .glass-card {
-                -webkit-transform: translateZ(0);
-                transform: translateZ(0);
-            }
-            
-            .btn {
-                -webkit-appearance: none;
-                appearance: none;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="app-header">
         <h1 class="app-title">Vision AI Assistant</h1>
-        <p class="app-subtitle">Intelligent multimodal interaction with speech and vision</p>
+        <p class="app-subtitle">Multimodal interaction with speech and vision</p>
     </div>
 
     <div id="loadingDiv" class="glass-card loading">
@@ -824,10 +624,10 @@
     <script type="module">
         import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
         
-        // Configure environment for better performance
+        // Simple environment configuration
         env.allowLocalModels = false;
         env.remoteURL = 'https://huggingface.co/';
-        env.backends.onnx.wasm.numThreads = navigator.hardwareConcurrency || 4;
+        env.backends.onnx.wasm.numThreads = navigator.hardwareConcurrency || 2;
         
         // DOM element references
         const video = document.getElementById('videoFeed');
@@ -853,8 +653,6 @@
         let intervalId;
         let isAssistantActive = false;
         let visionProcessor = null;
-        let speechProcessor = null;
-        let ttsProcessor = null;
         let isModelReady = false;
         let lastProcessedSpeech = '';
         let lastProcessedVision = '';
@@ -869,14 +667,11 @@
 
         // Image comparison for change detection
         let previousImageData = null;
-        const CHANGE_THRESHOLD = 0.1; // 10% change threshold
+        const CHANGE_THRESHOLD = 0.1;
 
         // Caching for repeated requests
         const responseCache = new Map();
         const CACHE_MAX_SIZE = 50;
-
-        // Worker for background processing (if needed)
-        let processingWorker = null;
 
         // Optimize canvas context
         let canvasContext = null;
@@ -892,59 +687,46 @@
             }
         }
 
-        // Initialize all AI models with optimizations
+        // Simple model initialization
         async function initModels() {
             try {
-                loadingStatus.textContent = 'Loading optimized vision model...';
+                loadingStatus.textContent = 'Loading vision model...';
                 
-                // Load smaller, faster vision model
                 visionProcessor = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-captioning', {
-                    quantized: true, // Use quantized model for better performance
+                    quantized: true,
                     progress_callback: (progress) => {
                         if (progress.status === 'progress') {
                             const percent = Math.round(progress.progress);
-                            loadingStatus.textContent = `Downloading vision model: ${percent}%`;
+                            loadingStatus.textContent = `Downloading model: ${percent}%`;
                         }
                     }
                 });
-
-                loadingStatus.textContent = 'Initializing speech recognition...';
-                speechProcessor = null; // Use Web Speech API
-
-                loadingStatus.textContent = 'Initializing speech synthesis...';
-                ttsProcessor = null; // Use window.speechSynthesis
                 
                 isModelReady = true;
                 loadingDiv.classList.add('hidden');
                 mainContent.classList.remove('hidden');
                 modelStatus.classList.remove('hidden');
                 video.classList.remove('hidden');
-                updateModelStatus('ready', 'All models loaded and ready');
+                updateModelStatus('ready', 'Model loaded and ready');
                 
-                // Initialize camera with optimizations
                 await initCamera();
                 
             } catch (error) {
                 console.error('Error loading models:', error);
                 loadingStatus.textContent = `Error: ${error.message}`;
                 loadingStatus.classList.add('error');
-                updateModelStatus('error', `Failed to load models: ${error.message}`);
+                updateModelStatus('error', `Failed to load model: ${error.message}`);
             }
         }
 
-        // Initialize camera with optimizations
+        // Simple camera initialization
         async function initCamera() {
             try {
-                // Detect mobile device and adjust constraints accordingly
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                
-                // Request appropriate resolution for device type
                 const constraints = {
                     video: {
-                        width: { ideal: isMobile ? 480 : 640 },
-                        height: { ideal: isMobile ? 360 : 480 },
-                        frameRate: { ideal: isMobile ? 10 : 15, max: isMobile ? 20 : 30 },
-                        facingMode: isMobile ? 'environment' : 'user' // Use back camera on mobile
+                        width: { ideal: 640, max: 1280 },
+                        height: { ideal: 480, max: 720 },
+                        frameRate: { ideal: 15, max: 30 }
                     },
                     audio: false
                 };
@@ -952,7 +734,6 @@
                 stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = stream;
                 
-                // Pre-initialize canvas context
                 video.addEventListener('loadedmetadata', () => {
                     canvas.width = video.videoWidth;
                     canvas.height = video.videoHeight;
@@ -967,20 +748,14 @@
                 console.error("Error accessing camera:", err);
                 responseText.value = `Camera error: ${err.message}`;
                 updateModelStatus('error', 'Camera access denied');
-                
-                // More user-friendly error message for mobile
-                const errorMessage = err.name === 'NotAllowedError' 
-                    ? 'Camera permission denied. Please allow camera access in your browser settings.'
-                    : `Error accessing camera: ${err.name}. Please grant camera permission.`;
-                    
-                alert(errorMessage);
+                alert(`Camera error: ${err.message}. Please grant camera permission.`);
             }
         }
 
-        // Optimized speech recognition with debouncing
+        // Simple speech recognition
         function initSpeechRecognition() {
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                statusText.textContent = "Speech recognition not supported in this browser";
+                statusText.textContent = "Speech recognition not supported - use text input";
                 return false;
             }
 
@@ -991,10 +766,7 @@
             recognition.interimResults = true;
             recognition.lang = 'en-US';
             
-            let speechTimeout;
-            
             recognition.onresult = (event) => {
-                const startTime = performance.now();
                 let finalTranscript = '';
                 let interimTranscript = '';
                 
@@ -1011,30 +783,16 @@
                     instructionText.value = finalTranscript;
                     lastProcessedSpeech = finalTranscript;
                     statusText.textContent = `Heard: "${finalTranscript}"`;
-                    
-                    // Debounce processing
-                    clearTimeout(speechTimeout);
-                    speechTimeout = setTimeout(() => {
-                        queueProcessing('speech', finalTranscript);
-                    }, 500);
+                    processCompleteInteraction(finalTranscript);
                 } else if (interimTranscript) {
                     instructionText.value = interimTranscript;
                     statusText.textContent = "Listening...";
                 }
-                
-                speechProcessingTime = performance.now() - startTime;
-                speechTimeSpan.textContent = speechProcessingTime.toFixed(1);
             };
             
             recognition.onerror = (event) => {
                 console.error('Speech recognition error:', event.error);
-                if (event.error === 'no-speech') {
-                    statusText.textContent = "No speech detected";
-                } else if (event.error === 'audio-capture') {
-                    statusText.textContent = "Microphone access denied";
-                } else {
-                    statusText.textContent = `Speech recognition error: ${event.error}`;
-                }
+                statusText.textContent = `Speech error: ${event.error}`;
             };
             
             recognition.onend = () => {
@@ -1050,7 +808,7 @@
             return true;
         }
 
-        // Processing queue to prevent concurrent processing
+        // Simple processing queue
         function queueProcessing(type, data) {
             processingQueue.push({ type, data, timestamp: Date.now() });
             processQueue();
@@ -1072,14 +830,13 @@
                 console.error('Error processing queue item:', error);
             } finally {
                 isProcessing = false;
-                // Process next item
                 if (processingQueue.length > 0) {
-                    setTimeout(processQueue, 100); // Small delay to prevent blocking
+                    setTimeout(processQueue, 100);
                 }
             }
         }
 
-        // Optimized image change detection
+        // Simple image change detection
         function detectImageChange() {
             if (!canvasContext) return true;
             
@@ -1092,7 +849,7 @@
             
             let diffCount = 0;
             const totalPixels = imageData.data.length / 4;
-            const sampleRate = 10; // Sample every 10th pixel for performance
+            const sampleRate = 10;
             
             for (let i = 0; i < imageData.data.length; i += 4 * sampleRate) {
                 const r1 = previousImageData[i];
@@ -1103,7 +860,7 @@
                 const b2 = imageData.data[i + 2];
                 
                 const diff = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
-                if (diff > 30) { // Threshold for pixel change
+                if (diff > 30) {
                     diffCount++;
                 }
             }
@@ -1118,7 +875,7 @@
             return hasChanged;
         }
 
-        // Optimized complete interaction processing with caching
+        // Simple interaction processing
         async function processCompleteInteraction(instruction) {
             if (!isModelReady) return;
 
@@ -1140,7 +897,6 @@
             try {
                 const startTime = performance.now();
                 
-                // Only process vision if image has changed significantly
                 let visionText = lastProcessedVision;
                 if (detectImageChange()) {
                     const visionResult = await visionProcessor(imageDataUrl);
@@ -1152,10 +908,8 @@
                 visionProcessingTime = performance.now() - startTime;
                 visionTimeSpan.textContent = visionProcessingTime.toFixed(1);
 
-                // Generate intelligent response
                 let response = generateResponse(instruction, visionText);
                 
-                // Cache the response
                 if (responseCache.size >= CACHE_MAX_SIZE) {
                     const firstKey = responseCache.keys().next().value;
                     responseCache.delete(firstKey);
@@ -1174,7 +928,7 @@
             }
         }
 
-        // Optimized response generation
+        // Simple response generation
         function generateResponse(instruction, visionText) {
             const question = instruction.toLowerCase();
             
@@ -1191,7 +945,7 @@
             }
         }
 
-        // Optimized speech synthesis with queue
+        // Simple speech synthesis
         let speechQueue = [];
         let isSpeaking = false;
 
@@ -1219,14 +973,14 @@
                 utterance.onend = () => {
                     isSpeaking = false;
                     statusText.textContent = "Ready for next question";
-                    processSpeechQueue(); // Process next in queue
+                    processSpeechQueue();
                 };
                 
                 utterance.onerror = (error) => {
                     console.error('Speech synthesis error:', error);
                     isSpeaking = false;
                     statusText.textContent = "Speech failed";
-                    processSpeechQueue(); // Continue with next
+                    processSpeechQueue();
                 };
                 
                 window.speechSynthesis.speak(utterance);
@@ -1235,11 +989,11 @@
                 console.error('Error with speech synthesis:', error);
                 isSpeaking = false;
                 statusText.textContent = "Speech synthesis failed";
-                processSpeechQueue(); // Continue with next
+                processSpeechQueue();
             }
         }
 
-        // Optimized image capture
+        // Simple image capture
         function captureImage() {
             if (!stream || !video.videoWidth || !canvasContext) {
                 console.warn("Video stream not ready for capture.");
@@ -1247,20 +1001,17 @@
             }
             
             canvasContext.drawImage(video, 0, 0, canvas.width, canvas.height);
-            return canvas.toDataURL('image/jpeg', 0.7); // Reduced quality for performance
+            return canvas.toDataURL('image/jpeg', 0.7);
         }
 
-        // Optimized image processing with adaptive intervals
+        // Simple image processing
         async function processImage() {
             if (!isAssistantActive || !isModelReady) return;
-            
-            // Skip processing if already processing
             if (isProcessing) return;
-            
             queueProcessing('vision', null);
         }
 
-        // Performance monitoring
+        // Simple performance monitoring
         function updatePerformanceMetrics() {
             const now = performance.now();
             frameCount++;
@@ -1273,40 +1024,8 @@
                 lastFrameTime = now;
             }
         }
-        
-        // Mobile-specific optimizations
-        function optimizeForMobile() {
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Reduce processing frequency on mobile for better performance
-                const baseInterval = 4000; // 4 seconds on mobile instead of 3
-                
-                // Adjust change threshold for mobile
-                CHANGE_THRESHOLD = 0.15; // 15% change threshold on mobile
-                
-                // Reduce cache size on mobile to save memory
-                CACHE_MAX_SIZE = 30;
-                
-                // Add mobile-specific event listeners
-                document.addEventListener('touchstart', () => {
-                    // Prevent double-tap zoom on buttons
-                }, { passive: true });
-                
-                // Handle orientation changes
-                window.addEventListener('orientationchange', () => {
-                    setTimeout(() => {
-                        // Recalculate canvas size after orientation change
-                        if (video.videoWidth && video.videoHeight) {
-                            canvas.width = video.videoWidth;
-                            canvas.height = video.videoHeight;
-                        }
-                    }, 100);
-                });
-            }
-        }
 
-        // Optimized start assistant
+        // Simple start assistant
         async function startAssistant() {
             if (!stream) {
                 responseText.value = "Camera not available.";
@@ -1324,16 +1043,12 @@
             startButton.className = 'btn btn-danger pulse-animation';
             statusText.textContent = "AI Assistant active - speak your questions";
 
-            // Start with immediate processing
             processImage();
             
-            // Use adaptive intervals based on device type
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const baseInterval = isMobile ? 4000 : 3000; // 4 seconds on mobile, 3 on desktop
             intervalId = setInterval(() => {
                 processImage();
                 updatePerformanceMetrics();
-            }, baseInterval);
+            }, 3000);
 
             try {
                 recognition.start();
@@ -1343,7 +1058,7 @@
             }
         }
 
-        // Optimized stop assistant
+        // Simple stop assistant
         function stopAssistant() {
             isAssistantActive = false;
             startButton.textContent = "🚀 Start AI Assistant";
@@ -1363,7 +1078,6 @@
                 }
             }
 
-            // Clear queues
             processingQueue.length = 0;
             speechQueue.length = 0;
             isProcessing = false;
@@ -1372,14 +1086,13 @@
             window.speechSynthesis.cancel();
         }
 
-        // Text input event listener for manual instructions
+        // Simple event listeners
         instructionText.addEventListener('input', (e) => {
             if (e.target.value.trim() && e.target.value !== lastProcessedSpeech) {
                 lastProcessedSpeech = e.target.value;
             }
         });
 
-        // Enter key to process instruction
         instructionText.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -1390,9 +1103,6 @@
             }
         });
 
-
-
-        // Button event listeners
         startButton.addEventListener('click', () => {
             if (isAssistantActive) {
                 stopAssistant();
@@ -1401,74 +1111,7 @@
             }
         });
 
-        // Error handling for model loading
-        window.addEventListener('error', (event) => {
-            console.error('Global error:', event.error);
-            if (event.error && event.error.message.includes('transformers')) {
-                loadingStatus.textContent = 'Error loading AI models. Please check your internet connection.';
-                loadingStatus.classList.add('error');
-                updateModelStatus('error', 'Failed to load AI models');
-            }
-        });
-
-        // Network status monitoring
-        window.addEventListener('online', () => {
-            if (!isModelReady) {
-                loadingStatus.textContent = 'Reconnecting to AI models...';
-                initModels();
-            }
-        });
-
-        window.addEventListener('offline', () => {
-            if (isAssistantActive) {
-                statusText.textContent = 'Network disconnected. AI features may be limited.';
-            }
-        });
-
-        // Performance optimization: Throttle scroll and resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                // Recalculate canvas size if needed
-                if (video.videoWidth && video.videoHeight) {
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-                }
-            }, 250);
-        });
-
-        // Accessibility improvements
-        document.addEventListener('keydown', (e) => {
-            // Escape key to stop assistant
-            if (e.key === 'Escape' && isAssistantActive) {
-                stopAssistant();
-            }
-            
-            // Space bar to toggle assistant (when focused on start button)
-            if (e.key === ' ' && document.activeElement === startButton) {
-                e.preventDefault();
-                startButton.click();
-            }
-        });
-
-        // Memory management
-        function cleanupMemory() {
-            // Clear caches periodically
-            if (responseCache.size > CACHE_MAX_SIZE * 0.8) {
-                const keysToDelete = Array.from(responseCache.keys()).slice(0, 10);
-                keysToDelete.forEach(key => responseCache.delete(key));
-            }
-            
-            // Clear old processing queue items
-            const now = Date.now();
-            processingQueue = processingQueue.filter(item => now - item.timestamp < 30000); // Keep only items from last 30 seconds
-        }
-
-        // Run cleanup every 30 seconds
-        setInterval(cleanupMemory, 30000);
-
-        // Optimized cleanup
+        // Simple cleanup
         window.addEventListener('beforeunload', () => {
             if (stream) {
                 stream.getTracks().forEach(track => track.stop());
@@ -1479,37 +1122,12 @@
             if (intervalId) {
                 clearInterval(intervalId);
             }
-            if (processingWorker) {
-                processingWorker.terminate();
-            }
             window.speechSynthesis.cancel();
         });
 
-        // Handle page visibility for performance
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && isAssistantActive) {
-                // Pause processing when page is hidden
-                if (intervalId) {
-                    clearInterval(intervalId);
-                }
-            } else if (!document.hidden && isAssistantActive) {
-                // Resume processing when page becomes visible
-                intervalId = setInterval(() => {
-                    processImage();
-                    updatePerformanceMetrics();
-                }, 3000);
-            }
-        });
-
-        // Initialize everything when DOM is ready
+        // Simple initialization
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial instruction
             instructionText.value = "What do you see?";
-            
-            // Apply mobile optimizations
-            optimizeForMobile();
-            
-            // Start model initialization
             initModels();
         });
 
