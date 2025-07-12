@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Enhanced Multimodal Vision-Speech AI App</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -108,7 +108,8 @@
             gap: 15px;
             align-items: center;
             margin: 0 auto 20px auto;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             animation: fadeInUp 0.8s var(--animation-smooth);
         }
         
@@ -120,7 +121,8 @@
         .io-areas {
             flex-direction: column;
             align-items: stretch;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
 
         }
         
@@ -170,7 +172,8 @@
         .video-container {
             position: relative;
             margin: 0 auto 30px auto;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             animation: fadeInUp 0.8s var(--animation-smooth) 0.2s both;
         }
         
@@ -289,7 +292,8 @@
         .loading {
             text-align: center;
             padding: 40px;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             margin: 0 auto;
             animation: fadeInUp 0.8s var(--animation-smooth);
         }
@@ -331,7 +335,8 @@
             font-size: 14px;
             font-weight: 500;
             margin: 0 auto 20px auto;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.8s var(--animation-smooth) 0.3s both;
@@ -376,7 +381,8 @@
             padding: 25px;
             margin: 0 auto 20px auto;
             min-height: 120px;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             animation: fadeInUp 0.8s var(--animation-smooth) 0.4s both;
         }
         
@@ -400,7 +406,8 @@
             font-size: 13px;
             color: var(--text-muted);
             margin: 0 auto 20px auto;
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             animation: fadeInUp 0.8s var(--animation-smooth) 0.5s both;
@@ -442,6 +449,29 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .app-header {
+                margin-bottom: 30px;
+            }
+            
+            .app-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+            
+            .app-subtitle {
+                font-size: 1rem;
+            }
+            
+            .controls, .io-areas, .speech-controls {
+                width: 100%;
+                max-width: 100%;
+                padding: 20px;
+                gap: 12px;
+            }
+            
             .controls {
                 flex-direction: column;
                 gap: 10px;
@@ -450,6 +480,8 @@
             .btn {
                 width: 100%;
                 justify-content: center;
+                padding: 16px 24px;
+                font-size: 16px;
             }
             
             .performance-metrics {
@@ -461,8 +493,152 @@
                 padding: 20px;
             }
             
+            .video-container {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 25px;
+            }
+            
+            #videoFeed {
+                max-width: 100%;
+                border-radius: 15px;
+            }
+            
+            .caption-area {
+                width: 100%;
+                max-width: 100%;
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .status-indicator {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 16px;
+                margin-bottom: 15px;
+            }
+            
+            .performance-info {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 16px;
+                margin-bottom: 15px;
+            }
+            
+            .loading {
+                width: 100%;
+                max-width: 100%;
+                padding: 30px 20px;
+            }
+            
             textarea {
                 font-size: 16px; /* Prevents zoom on iOS */
+                padding: 14px 16px;
+                min-height: 80px;
+            }
+            
+            .input-group {
+                margin-bottom: 15px;
+            }
+            
+            label {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+            
+            .caption-text {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+            
+            .caption-label {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .app-header {
+                margin-bottom: 25px;
+            }
+            
+            .app-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+            
+            .app-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .controls, .io-areas, .speech-controls {
+                padding: 15px;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .video-container {
+                margin-bottom: 20px;
+            }
+            
+            .caption-area {
+                padding: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .status-indicator {
+                padding: 10px 14px;
+                margin-bottom: 12px;
+                font-size: 13px;
+            }
+            
+            .performance-info {
+                padding: 10px 14px;
+                margin-bottom: 12px;
+                font-size: 12px;
+            }
+            
+            .loading {
+                padding: 25px 15px;
+            }
+            
+            textarea {
+                padding: 12px 14px;
+                min-height: 70px;
+                font-size: 16px;
+            }
+            
+            .input-group {
+                margin-bottom: 12px;
+            }
+            
+            label {
+                font-size: 0.85rem;
+                margin-bottom: 5px;
+            }
+            
+            .caption-text {
+                font-size: 14px;
+            }
+            
+            .caption-label {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            
+            .performance-metrics {
+                gap: 8px;
+            }
+            
+            .metric {
+                font-size: 12px;
             }
         }
         
@@ -533,6 +709,49 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            /* Prevent text selection on buttons for better mobile UX */
+            .btn {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Improve touch targets */
+            .btn {
+                min-height: 44px; /* iOS recommended minimum touch target */
+                
+            }
+            
+            /* Better scrolling on mobile */
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Prevent zoom on input focus */
+            input, textarea, select {
+                font-size: 16px;
+            }
+        }
+        
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .glass-card {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+            
+            .btn {
+                -webkit-appearance: none;
+                appearance: none;
             }
         }
     </style>
@@ -716,12 +935,16 @@
         // Initialize camera with optimizations
         async function initCamera() {
             try {
-                // Request lower resolution for better performance
+                // Detect mobile device and adjust constraints accordingly
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                // Request appropriate resolution for device type
                 const constraints = {
                     video: {
-                        width: { ideal: 640 },
-                        height: { ideal: 480 },
-                        frameRate: { ideal: 15, max: 30 }
+                        width: { ideal: isMobile ? 480 : 640 },
+                        height: { ideal: isMobile ? 360 : 480 },
+                        frameRate: { ideal: isMobile ? 10 : 15, max: isMobile ? 20 : 30 },
+                        facingMode: isMobile ? 'environment' : 'user' // Use back camera on mobile
                     },
                     audio: false
                 };
@@ -744,7 +967,13 @@
                 console.error("Error accessing camera:", err);
                 responseText.value = `Camera error: ${err.message}`;
                 updateModelStatus('error', 'Camera access denied');
-                alert(`Error accessing camera: ${err.name}. Please grant camera permission.`);
+                
+                // More user-friendly error message for mobile
+                const errorMessage = err.name === 'NotAllowedError' 
+                    ? 'Camera permission denied. Please allow camera access in your browser settings.'
+                    : `Error accessing camera: ${err.name}. Please grant camera permission.`;
+                    
+                alert(errorMessage);
             }
         }
 
@@ -1044,6 +1273,38 @@
                 lastFrameTime = now;
             }
         }
+        
+        // Mobile-specific optimizations
+        function optimizeForMobile() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Reduce processing frequency on mobile for better performance
+                const baseInterval = 4000; // 4 seconds on mobile instead of 3
+                
+                // Adjust change threshold for mobile
+                CHANGE_THRESHOLD = 0.15; // 15% change threshold on mobile
+                
+                // Reduce cache size on mobile to save memory
+                CACHE_MAX_SIZE = 30;
+                
+                // Add mobile-specific event listeners
+                document.addEventListener('touchstart', () => {
+                    // Prevent double-tap zoom on buttons
+                }, { passive: true });
+                
+                // Handle orientation changes
+                window.addEventListener('orientationchange', () => {
+                    setTimeout(() => {
+                        // Recalculate canvas size after orientation change
+                        if (video.videoWidth && video.videoHeight) {
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                        }
+                    }, 100);
+                });
+            }
+        }
 
         // Optimized start assistant
         async function startAssistant() {
@@ -1066,8 +1327,9 @@
             // Start with immediate processing
             processImage();
             
-            // Use adaptive intervals based on performance
-            const baseInterval = 3000; // 3 seconds base
+            // Use adaptive intervals based on device type
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const baseInterval = isMobile ? 4000 : 3000; // 4 seconds on mobile, 3 on desktop
             intervalId = setInterval(() => {
                 processImage();
                 updatePerformanceMetrics();
@@ -1243,6 +1505,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Set initial instruction
             instructionText.value = "What do you see?";
+            
+            // Apply mobile optimizations
+            optimizeForMobile();
             
             // Start model initialization
             initModels();
