@@ -560,6 +560,9 @@
     <div class="app-header">
         <h1 class="app-title">Vision AI Assistant</h1>
         <p class="app-subtitle">Multimodal interaction with speech and vision</p>
+        <div class="tts-info">
+            🔊 Powered by Web Speech API - Cross-platform voice synthesis
+        </div>
     </div>
 
     <div id="loadingDiv" class="glass-card loading">
@@ -753,10 +756,13 @@
             }
         }
 
-        // Simple speech recognition
+        // Enhanced speech recognition with iOS Safari support
         function initSpeechRecognition() {
+            // Check if Web Speech API is available
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                statusText.textContent = "Speech recognition not supported - use text input";
+                // iOS Safari fallback - add speech input capability
+                addSpeechInputFallback();
+                statusText.textContent = "Speech recognition not supported - tap microphone icon to speak";
                 return false;
             }
 
@@ -807,6 +813,45 @@
             };
             
             return true;
+        }
+
+        // iOS Safari fallback for speech input
+        function addSpeechInputFallback() {
+            // Add microphone button for iOS Safari
+            const micButton = document.createElement('button');
+            micButton.innerHTML = '🎤';
+            micButton.className = 'btn btn-info';
+            micButton.style.marginLeft = '10px';
+            micButton.title = 'Tap to speak (iOS Safari)';
+            
+            micButton.addEventListener('click', () => {
+                // Create temporary speech input
+                const speechInput = document.createElement('input');
+                speechInput.type = 'text';
+                speechInput.setAttribute('x-webkit-speech', '');
+                speechInput.setAttribute('speech', '');
+                speechInput.style.position = 'absolute';
+                speechInput.style.left = '-9999px';
+                speechInput.style.opacity = '0';
+                
+                speechInput.addEventListener('change', (e) => {
+                    if (e.target.value) {
+                        instructionText.value = e.target.value;
+                        lastProcessedSpeech = e.target.value;
+                        statusText.textContent = `Heard: "${e.target.value}"`;
+                        processCompleteInteraction(e.target.value);
+                    }
+                    document.body.removeChild(speechInput);
+                });
+                
+                document.body.appendChild(speechInput);
+                speechInput.focus();
+                speechInput.click();
+            });
+            
+            // Add button next to instruction textarea
+            const inputGroup = instructionText.parentElement;
+            inputGroup.appendChild(micButton);
         }
 
         // Simple processing queue
@@ -946,9 +991,26 @@
             }
         }
 
-        // Simple speech synthesis
+        // Web Speech API Speech Synthesis
         let speechQueue = [];
         let isSpeaking = false;
+        let voicesLoaded = false;
+
+        // Load available voices
+        function loadVoices() {
+            if (voicesLoaded) return;
+            
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+                voicesLoaded = true;
+                console.log('Available voices:', voices.length);
+            }
+        }
+
+        // Initialize voice loading
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
 
         async function speakResponse(text) {
             if (!text) return;
@@ -967,9 +1029,32 @@
                 statusText.textContent = "Speaking...";
                 
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.rate = 0.9;
-                utterance.pitch = 1.0;
-                utterance.volume = 1.0;
+                
+                // Configure speech settings
+                utterance.rate = 0.9;      // Speed (0.1 to 10)
+                utterance.pitch = 1.0;     // Pitch (0 to 2)
+                utterance.volume = 1.0;    // Volume (0 to 1)
+                
+                // Select best available voice
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    // Prefer English voices, especially on iOS Safari
+                    const englishVoice = voices.find(voice => 
+                        voice.lang.startsWith('en') && voice.localService
+                    ) || voices.find(voice => 
+                        voice.lang.startsWith('en')
+                    ) || voices[0];
+                    
+                    if (englishVoice) {
+                        utterance.voice = englishVoice;
+                        console.log('Using voice:', englishVoice.name, englishVoice.lang);
+                    }
+                }
+                
+                // Event handlers
+                utterance.onstart = () => {
+                    statusText.textContent = "Speaking...";
+                };
                 
                 utterance.onend = () => {
                     isSpeaking = false;
@@ -984,6 +1069,12 @@
                     processSpeechQueue();
                 };
                 
+                // Cancel any ongoing speech before starting new one
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                }
+                
+                // Speak the text
                 window.speechSynthesis.speak(utterance);
                 
             } catch (error) {
@@ -1123,7 +1214,10 @@
             if (intervalId) {
                 clearInterval(intervalId);
             }
-            window.speechSynthesis.cancel();
+            // Stop any ongoing speech synthesis
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+            }
         });
 
         // Simple initialization
