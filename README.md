@@ -12,18 +12,18 @@ A sophisticated multimodal AI application that combines computer vision, speech 
 - **Multimodal Interaction**: Seamlessly combines vision, speech, and text inputs
 
 ### Advanced Features
-- **Performance Optimization**: Adaptive processing intervals and intelligent caching
+- **Performance Optimization**: Intelligent caching and queue management
 - **Change Detection**: Only processes images when significant changes are detected
 - **Queue Management**: Prevents concurrent processing conflicts
 - **Memory Management**: Automatic cleanup and cache management
-- **Accessibility**: Keyboard shortcuts and screen reader support
 - **Responsive Design**: Works on desktop and mobile devices
+- **iOS Safari Support**: Fallback speech input for unsupported browsers
 
 ## 🛠️ Technology Stack
 
 ### Frontend
 - **HTML5**: Semantic markup with modern web standards
-- **CSS3**: Advanced styling with CSS Grid, Flexbox, and custom properties
+- **CSS3**: Advanced styling with Flexbox and custom properties
 - **Vanilla JavaScript**: No framework dependencies for optimal performance
 
 ### AI & Machine Learning
@@ -38,11 +38,10 @@ A sophisticated multimodal AI application that combines computer vision, speech 
 - **Performance API**: Real-time performance monitoring
 
 ### Performance Optimizations
-- **Web Workers**: Background processing for non-blocking operations
-- **Request Animation Frame**: Smooth visual updates
-- **Debouncing**: Prevents excessive API calls
-- **Caching**: Intelligent response caching for repeated queries
-- **Adaptive Intervals**: Dynamic processing based on system performance
+- **Intelligent Caching**: Response caching for repeated queries
+- **Queue Management**: Prevents processing conflicts
+- **Change Detection**: Pixel-level comparison for efficiency
+- **Memory Cleanup**: Automatic cache and queue management
 
 ## 🚀 Getting Started
 
@@ -62,7 +61,8 @@ A sophisticated multimodal AI application that combines computer vision, speech 
 1. **Start the Assistant**: Click "Start AI Assistant" button
 2. **Ask Questions**: Speak or type questions about what the camera sees
 3. **Get Responses**: The AI will analyze the visual content and respond verbally
-4. **Stop**: Click "Stop AI Assistant" or press Escape key
+4. **Submit Text**: Press Enter key to submit typed questions
+5. **Stop**: Click "Stop AI Assistant" button
 
 ## 📱 Browser Compatibility
 
@@ -121,11 +121,13 @@ visionProcessor = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-caption
 4. **Response Generation**: Contextual response creation
 5. **Speech Synthesis**: Audio output generation
 
+**Note**: Image processing occurs every 3 seconds when the assistant is active, with additional processing triggered by user interactions.
+
 ### Performance Monitoring
 - Real-time FPS tracking
 - Processing time measurements
-- Memory usage optimization
-- Network status monitoring
+- Cache management
+- Queue status monitoring
 
 ## 🎨 UI/UX Features
 
@@ -141,6 +143,7 @@ visionProcessor = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-caption
 - **Loading States**: Clear progress indicators
 - **Status Updates**: Real-time system status
 - **Error Handling**: User-friendly error messages
+- **Keyboard Support**: Enter key to submit text input
 
 ## 🔒 Privacy & Security
 
@@ -184,6 +187,7 @@ visionProcessor = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-caption
 - Verify microphone permissions
 - Check browser compatibility
 - Ensure quiet environment
+- On iOS Safari, use the microphone button for speech input
 
 **Slow Performance**
 - Close other browser tabs
